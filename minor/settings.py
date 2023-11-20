@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-$tf+102m9t-2*#gulx&744b9xv1aohs+o4d5%5n_o-nzu3%2_l
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '937e-2409-4081-9c1e-a6f3-c60-107d-d314-8887.ngrok-free.app'
+    'http://ec2-3-110-225-225.ap-south-1.compute.amazonaws.com/'
 ]
 
 
