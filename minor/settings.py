@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-$tf+102m9t-2*#gulx&744b9xv1aohs+o4d5%5n_o-nzu3%2_l
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'ec2-3-110-225-225.ap-south-1.compute.amazonaws.com'
+    'ec2-3-110-225-225.ap-south-1.compute.amazonaws.com',
+    "127.0.0.1"
 ]
 
 
@@ -130,3 +131,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.BasicAuthentication'
+    ]
+}
