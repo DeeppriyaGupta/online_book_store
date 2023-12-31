@@ -97,7 +97,7 @@ class FavoriteListCreateView(generics.ListCreateAPIView):
 
 
 class UserFavoriteBooksView(generics.ListAPIView):
-    # serializer_class = FavoriteSerializer
+    serializer_class = FavoriteSerializer
 
     def get_queryset(self):
         user_id = self.kwargs['user_id']
