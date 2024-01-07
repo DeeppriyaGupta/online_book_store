@@ -87,9 +87,9 @@ class FavoriteListCreateView(generics.ListCreateAPIView):
                 favorite, created = Favorite.objects.get_or_create(user_id=user_id, book=book_instance)
                 if not created:
                     favorite.delete()
-                    return Response({'message': 'Book unfavorited successfully'}, status=status.HTTP_200_OK)
+                    return Response({'message': 'unfavorite'}, status=status.HTTP_200_OK)
                 else:
-                    return Response({'message': 'Book favorited successfully'}, status=status.HTTP_201_CREATED)
+                    return Response({'message': 'favorite'}, status=status.HTTP_201_CREATED)
             except Book.DoesNotExist:
                 return Response({'error': 'Book not found'}, status=status.HTTP_404_NOT_FOUND)
         else:
@@ -102,6 +102,18 @@ class UserFavoriteBooksView(generics.ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         return Favorite.objects.filter(user_id=user_id)
+
+class IsFavoriteView(generics.ListCreateAPIView):
+    serializer_class=FavoriteSerializer
+
+    def get(self, request, *args, **kwargs):
+        user_id = self.kwargs['user_id']
+        book_id = self.kwargs['book_id']
+        is_favorite = Favorite.objects.filter(user_id=user_id, book_id=book_id).exists()
+
+        if is_favorite:
+            return Response({'status':'True'})
+        return Response({'status':'False'})
 
 
 # class UserRegistration(APIView):

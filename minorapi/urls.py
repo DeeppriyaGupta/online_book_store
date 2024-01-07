@@ -1,5 +1,5 @@
 from django.urls import path, include
-from minorapi.views import BookView,  BookById, FavoriteListCreateView, UserFavoriteBooksView
+from minorapi.views import BookView,  BookById, FavoriteListCreateView, UserFavoriteBooksView, IsFavoriteView
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -22,6 +22,7 @@ urlpatterns = [
     path('books/<int:pk>', BookById.as_view()),
     path('favorites/', FavoriteListCreateView.as_view(), name='favorite-list-create'),
     path('user/<int:user_id>/favorites/', UserFavoriteBooksView.as_view(), name='user-favorite-books'),
+    path('isfavorite/user/<int:user_id>/book/<int:book_id>/', IsFavoriteView.as_view(), name='is-favorite')
     # path('user/', UserView.as_view()),
     # path('user/<int:pk>', UserById.as_view()),
     # path('issued/', IssuedView.as_view()),
